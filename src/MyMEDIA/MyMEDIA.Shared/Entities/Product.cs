@@ -12,14 +12,18 @@ public class Product
 
     public string Description { get; set; } = string.Empty;
 
+    public string ImageUrl { get; set; } = string.Empty;
+
     [Column(TypeName = "decimal(18,2)")]
     public decimal BasePrice { get; set; }
 
     [Column(TypeName = "decimal(18,2)")]
     public decimal FinalPrice { get; set; }
 
-    public bool IsActive { get; set; }
-    public bool IsForSale { get; set; } // vs Listing only
+    public int StockQuantity { get; set; } = 0;
+
+    public bool IsActive { get; set; } = false; // Requires approval
+    public bool IsForSale { get; set; } = true; // vs Listing only
 
     public int CategoryId { get; set; }
     public Category? Category { get; set; }
