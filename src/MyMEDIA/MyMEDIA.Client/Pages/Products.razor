@@ -1,0 +1,41 @@
+@page "/products"
+@using MyMEDIA.Shared.Entities
+
+<h3>Products</h3>
+
+@if (products == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="row">
+    @foreach (var product in products)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Title</h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text">Price: @product.FinalPrice</p>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+}
+
+@code {
+    private List<Product>? products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate API call
+        await Task.Delay(500);
+        products = new List<Product>
+        {
+            new Product { Title = "Movie A", Description = "Great movie", FinalPrice = 19.99m },
+            new Product { Title = "Album B", Description = "Great music", FinalPrice = 14.99m }
+        };
+    }
+}
